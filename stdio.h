@@ -80,5 +80,8 @@ extern int ungetc(int ch, FILE* stream);
 extern long ftell(FILE* stream);
 extern int fseek(FILE* f, long offset, int whence);
 extern void rewind(FILE* f);
+
+/* Error handling */
+void perror(const char *s);
 #endif
 #endif

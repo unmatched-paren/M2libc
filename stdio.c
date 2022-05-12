@@ -15,12 +15,15 @@
  * along with M2-Planet.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+#include <errno.h>
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Required constants */
 /* For file I/O*/
@@ -427,4 +430,15 @@ int fseek(FILE* f, long offset, int whence)
 void rewind(FILE* f)
 {
 	fseek(f, 0, SEEK_SET);
+}
+
+
+void perror(const char *s) {
+	if (s != NULL && *s != '\0') {
+		fputs(s, stderr);
+		fputs(": ", stderr);
+	}
+	
+	fputs(strerror(errno), stderr);
+	fputs("\n", stderr);
 }

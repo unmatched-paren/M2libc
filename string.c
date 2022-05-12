@@ -15,6 +15,7 @@
  * along with M2-Planet.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <errno.h>
 #include <stddef.h>
 
 char* strcpy(char* dest, char const* src)
@@ -252,4 +253,83 @@ int memcmp(void const* lhs, void const* rhs, size_t count)
 		if(count == i) return count;
 	}
 	return (s1[i] - s2[i]);
+}
+
+
+char *strerror(int errnum)
+{
+	switch (errnum) {
+	case E2BIG:		return "argument list too long";
+	case EACCES:		return "permission denied";
+	case EADDRINUSE:	return "address in use";
+	case EADDRNOTAVAIL:	return "address not available";
+	case EAFNOSUPPORT:	return "address family not supported";
+	case EAGAIN:		return "resource unavailable";
+	case EALREADY:		return "connection already in progress";
+	case EBADF:		return "bad file descriptor";
+	case EBADMSG:		return "bad message";
+	case EBUSY:		return "device or resource busy";
+	case ECHILD:		return "no child processes";
+	case ECONNABORTED:	return "connection aborted";
+	case ECONNREFUSED:	return "connection refused";
+	case ECONNRESET:	return "connection reset";
+	case EDEADLK:		return "resource deadlock";
+	case EDESTADDRREQ:	return "destination address required";
+	case EDOM:		return "argument out of function's domain";
+	case EEXIST:		return "file exists";
+	case EFAULT:		return "bad address";
+	case EFBIG:		return "file too big";
+	case EHOSTUNREACH:	return "host unreachable";
+	case EIDRM:		return "identifier removed";
+	case EILSEQ:		return "illegal byte sequence";
+	case EINPROGRESS:	return "operation in progress";
+	case EINTR:		return "function interrupted";
+	case EINVAL:		return "invalid argument";
+	case EIO:		return "i/o error";
+	case EISCONN:		return "socket connected";
+	case EISDIR:		return "is a directory";
+	case ELOOP:		return "too many levels of symbolic links";
+	case EMFILE:		return "fd number too large";
+	case EMLINK:		return "too many links";
+	case EMSGSIZE:		return "message too big";
+	case ENAMETOOLONG:	return "filename too long";
+	case ENETDOWN:		return "network down";
+	case ENETRESET:		return "network aborted connection";
+	case ENETUNREACH:	return "network unreachable";
+	case ENFILE:		return "too many open files";
+	case ENOBUFS:		return "no buffer space";
+	case ENODEV:		return "no such device";
+	case ENOENT:		return "no such file";
+	case ENOEXEC:		return "exec format error";
+	case ENOLCK:		return "no lock available";
+	case ENOMEM:		return "out of memory";
+	case ENOMSG:		return "no message of the desired type";
+	case ENOPROTOOPT:	return "protocol not available";
+	case ENOSPC:		return "no space on device";
+	case ENOSYS:		return "unsupported functionality";
+	case ENOTCONN:		return "socket not connected";
+	case ENOTDIR:		return "not a directory";
+	case ENOTEMPTY:		return "directory not empty";
+	case ENOTRECOVERABLE:	return "unrecoverable state";
+	case ENOTSOCK:		return "not a socket";
+	case ENOTSUP:		return "usupported functionality";
+	case ENOTTY:		return "bad i/o control operation";
+	case ENXIO:		return "no such device or address";
+	case EOVERFLOW:		return "value too large for type";
+	case EOWNERDEAD:	return "previous owner died";
+	case EPERM:		return "not permitted";
+	case EPROTO:		return "protocol error";
+	case EPROTONOSUPPORT:	return "protocol not supported";
+	case EPROTOTYPE:	return "wrong protocol type for socket";
+	case ERANGE:		return "result too big";
+	case EROFS:		return "read-only file system";
+	case ESPIPE:		return "tried to seek on pipe";
+	case ESRCH:		return "no such address";
+	case ETIMEDOUT:		return "connection timed out";
+	case ETXTBSY:		return "text file busy";
+	case EXDEV:		return "cross-device link";
+	default:
+		    errno = EINVAL;
+		    return "unknown error";
+	}
 }

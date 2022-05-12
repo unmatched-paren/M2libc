@@ -46,5 +46,9 @@ void* memcpy(void* dest, void const* src, size_t count );
 void* memmove(void* dest, void const* src, size_t count );
 int memcmp(void const* lhs, void const* rhs, size_t count );
 void* memchr( void const* ptr, int ch, size_t count );
+
+/* Errno handling */
+char *strerror(int errnum);
+
 #endif
 #endif
